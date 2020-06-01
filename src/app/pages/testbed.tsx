@@ -1,9 +1,9 @@
 import React from 'react';
 
-function Styled() {
+function TestBed() {
   return (
     <div>play with styled component</div>
   );
 }
 
-export default Styled;
+export default TestBed;

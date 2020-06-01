@@ -1,14 +1,15 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
 import './app.scss';
+import Header from './components/header';
+import Routes from './router/app.routes';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 function App() {
-  const Div = styled.div`
-    text-align: center;
-  `;
-  
   return (
-    <Div />
+    <Router>
+      <Header></Header>
+      <Routes></Routes>
+    </Router>
   );
 }
 

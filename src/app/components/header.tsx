@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 function Header() {
   return (
     <header>
-      <NavLink to='/'>playground</NavLink>
+      <NavLink exact to='/'>playground</NavLink>
       <Nav></Nav>
     </header>
   );

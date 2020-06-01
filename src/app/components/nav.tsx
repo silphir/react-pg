@@ -11,7 +11,7 @@ function Nav() {
   ];
 
   const navChildren = navItems.map(item => (
-    <NavLink to={item.to} key={item.id}>
+    <NavLink exact to={item.to} key={item.id}>
       {item.title}
     </NavLink>
   ));

@@ -19,7 +19,7 @@ const Stheader = styled.header`
     max-width: 1024px;
     margin: 0 auto;
     img {
-      width: 75px;
+      width: 85px;
       animation:${AppLogoSpin} infinite 20s linear;
     }
   }

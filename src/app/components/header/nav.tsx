@@ -15,6 +15,7 @@ const StNavLink = styled(NavLink)`
   padding: 5px;
   display: flex;
   align-items: center;
+  font-size: 1.2rem;
   &:hover {
     color: #666;
   }

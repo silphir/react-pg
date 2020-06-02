@@ -9,7 +9,11 @@ const Div = styled.div`
 
 function Playground() {
   return (
-    <Div>Playground :)</Div>
+    <Div>
+      <div>
+        <h1>Playground :)</h1>
+      </div>
+    </Div>
   );
 }
 

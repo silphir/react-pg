@@ -29,8 +29,8 @@ function Nav() {
   const navItems = [
     {
       id: 1,
-      title: 'testbed',
-      to: '/testbed',
+      title: 'styled',
+      to: '/styled',
     },
     {
       id: 2,

@@ -34,6 +34,9 @@ function PlaygroundHome() {
           <li>
             styled component
           </li>
+          <li>
+            redux, hooks, rxjs
+          </li>
         </StUl>
       </StSection>
     </StDiv>

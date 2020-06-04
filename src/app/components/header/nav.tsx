@@ -34,6 +34,11 @@ function Nav() {
     },
     {
       id: 2,
+      title: 'redux-hooks-rxjs',
+      to: '/redux-hooks-rxjs',
+    },
+    {
+      id: 3,
       title: 'temp',
       to: '/temp',
     },

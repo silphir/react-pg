@@ -1,33 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
+import { StPageHeader, StSection, StPageContainer } from '../components/common-styled';
 
-const StDiv = styled.div`
-  margin: 30px auto 0 auto;
-  width: 1024px;
-  font-size: 2rem;
-`;
-const StHeader = styled.header`
-  margin-bottom: 20px;
-  h1 {
-    font-size: 1.5rem;
-  }
-`;
-const StSection = styled.section`
-  margin-bottom: 10px;
+const StOl = styled.ol`
   font-size: 1.5rem;
-`;
-const StUl = styled.ul`
-  list-style: none;
+  padding-left: 40px;
 `;
 
 function PlaygroundHome() {
   return (
-    <StDiv>
-      <StHeader>
+    <StPageContainer>
+      <StPageHeader>
         <h1>Playground :)</h1>
-      </StHeader>
+      </StPageHeader>
       <StSection>
-        <StUl>
+        <StOl>
           <li>
             component lazy loading with router
           </li>
@@ -37,9 +24,9 @@ function PlaygroundHome() {
           <li>
             redux, hooks, rxjs
           </li>
-        </StUl>
+        </StOl>
       </StSection>
-    </StDiv>
+    </StPageContainer>
   );
 }
 

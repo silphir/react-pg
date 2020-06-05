@@ -12,12 +12,17 @@ const AppLogoSpin = keyframes`
     transform: rotate(360deg);
   }
 `;
-const Stheader = styled.header`
+const StTopheader = styled.header`
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .3);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   > div {
     display: flex;
     max-width: 1024px;
     margin: 0 auto;
+    height: 65px;
     img {
       width: 85px;
       animation:${AppLogoSpin} infinite 20s linear;
@@ -27,14 +32,14 @@ const Stheader = styled.header`
 
 function Header() {
   return (
-    <Stheader>
+    <StTopheader>
       <div>
         <NavLink exact to='/'>
           <img src={logo} alt="logo" />
         </NavLink>
         <Nav></Nav>
       </div>
-    </Stheader>
+    </StTopheader>
   );
 }
 

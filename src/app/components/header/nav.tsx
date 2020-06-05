@@ -5,23 +5,32 @@ import { NavLink } from 'react-router-dom';
 const Stnav = styled.nav`
   padding: 0 20px;
   margin: 0 0 0 auto;
-  display: flex;
   align-items: stretch;
+  > ul {
+    display: flex;
+    list-style: none;
+  }
 `;
-
+const Indicator = styled.div``;
 const StNavLink = styled(NavLink)`
+  height: 61px;
   text-decoration: none;
-  color: #999;
-  padding: 5px;
+  color: #bbb;
+  padding: 5px 15px;
   display: flex;
   align-items: center;
   font-size: 1.2rem;
+  font-weight: bold;
   &:hover {
-    color: #666;
+    color: #888;
   }
   &.active {
-    color: #666;
-    font-weight: bold;
+    color: #0084ac;
+    ~${Indicator} {
+      margin-top: auto;
+      height: 4px;
+      background-color: #0084ac;
+    }
   }
 `;
 
@@ -45,14 +54,19 @@ function Nav() {
   ];
 
   const navChildren = navItems.map(item => (
-    <StNavLink exact to={item.to} key={item.id}>
-      {item.title}
-    </StNavLink>
+    <li key={item.id}>
+      <StNavLink exact to={item.to} >
+        {item.title}
+      </StNavLink>
+      <Indicator></Indicator>
+    </li>
   ));
 
   return (
     <Stnav>
-      {navChildren}
+      <ul>
+        {navChildren}
+      </ul>
     </Stnav>
   );
 }

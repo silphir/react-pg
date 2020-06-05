@@ -12,17 +12,22 @@ const Div = styled.div`
   font-size: 1.2rem;
   font-weight: bold;
 `;
+const StContent = styled.div`
+  padding-top: 64px;
+`
 function Routes() {
   return (
-    <Suspense fallback={<Div>Loading...</Div>}>
-      <Switch>
-        <Route exact path="/" component={PlaygroundHome} />
-        <Route path="/styled" component={StyledPage} />
-        <Route path="/redux-hooks-rxjs" component={ReduxHooksRxjsContiner} />
-        <Route path="/temp" />
-        <Redirect path="*" to="/" />
-      </Switch>
-    </Suspense>
+    <StContent>
+      <Suspense fallback={<Div>Loading...</Div>}>
+        <Switch>
+            <Route exact path="/" component={PlaygroundHome} />
+            <Route path="/styled" component={StyledPage} />
+            <Route path="/redux-hooks-rxjs" component={ReduxHooksRxjsContiner} />
+            <Route path="/temp" />
+            <Redirect path="*" to="/" />
+        </Switch>
+      </Suspense>
+    </StContent>
   );
 }
 

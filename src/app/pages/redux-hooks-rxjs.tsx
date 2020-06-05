@@ -5,6 +5,18 @@ import { switchMap, tap } from 'rxjs/operators'
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/app.action";
 import { User } from "../store/app.state";
+import { StButton, StPageContainer, StPageHeader, StSection } from "../components/common-styled";
+import styled from "styled-components";
+
+const StUl = styled.ul`
+  list-style: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #777;
+  > li {
+    padding: 15px;
+  }
+`;
 
 function ReduxHooksRxjs ({ users }: { users: User[] }) {
   const dispatch = useDispatch();
@@ -12,25 +24,32 @@ function ReduxHooksRxjs ({ users }: { users: User[] }) {
   const clickEvent = new Subject<void>();
   clickEvent.pipe(
     switchMap(() => 
-      ajax.getJSON('http://localhost:20000/people').pipe(
-        tap((result: any) => {
-          dispatch(userAction.setUser(result.data));
+      ajax.getJSON<{ data: User[] }>('http://localhost:20000/people').pipe(
+        tap(({ data }) => {
+          dispatch(userAction.setUser(data));
         }),
       )
     )
   ).subscribe();
   
-  const UserList = users.map((user:User, index) => (
-    <div key={index}>
-      {user.name}
-    </div>
+  const UserList = users.map((user: User, index) => (
+    <li key={index}>
+      <span>User Name : </span>{user.name}
+    </li>
   ));
 
   return (
-    <div>
-      { UserList }
-      <button type="button" onClick={() => clickEvent.next()}> api Get </button>
-    </div>
+    <StPageContainer>
+      <StPageHeader>
+        <h1>use redux, rxjs, hooks - get users</h1>
+      </StPageHeader>
+      <StSection>
+        <StButton type="button" onClick={() => clickEvent.next()}> api Get </StButton>
+        <StUl>
+          { UserList }
+        </StUl>
+      </StSection>
+    </StPageContainer>
   )
 }
 

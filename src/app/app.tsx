@@ -3,12 +3,12 @@ import './app.scss';
 import Header from './components/header/header';
 import Routes from './router/app.routes';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { userReducer } from './store/app.action';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import { reducer } from './store/app.store';
 
 const store = configureStore({ 
-  reducer: userReducer
+  reducer
 })
 
 function App() {

@@ -3,8 +3,8 @@ import { Subject } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { switchMap, tap } from 'rxjs/operators'
 import { useDispatch } from "react-redux";
-import { userAction } from "../store/app.action";
-import { User } from "../store/app.state";
+import { userAction } from "../store/users.action";
+import { User } from "../store/users.state";
 import { StButton, StPageContainer, StPageHeader, StSection } from "../components/common-styled";
 import styled from "styled-components";
 

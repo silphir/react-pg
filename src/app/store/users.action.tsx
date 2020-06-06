@@ -1,5 +1,5 @@
 import { createAction, createReducer } from '@reduxjs/toolkit';
-import { initialState, User } from './app.state';
+import { initialState, User } from './users.state';
 
 const setUser = createAction('SET USER', (users: User[]) => ({ payload: { users } }));
 

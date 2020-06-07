@@ -13,12 +13,13 @@ const StUl = styled.ul`
   font-size: 1.05rem;
   font-weight: 500;
   color: #777;
+  padding: 20px 0;
   > li {
-    padding: 15px;
+    margin-bottom: 10px;
   }
 `;
 
-function ReduxHooksRxjs ({ users }: { users: User[] }) {
+function RxjsReduxHooks ({ users }: { users: User[] }) {
   const dispatch = useDispatch();
   
   const clickEvent = new Subject<void>();
@@ -41,7 +42,7 @@ function ReduxHooksRxjs ({ users }: { users: User[] }) {
   return (
     <StPageContainer>
       <StPageHeader>
-        <h1>use redux, rxjs, hooks - get users</h1>
+        <h1>use Redux, RxJS, Hooks - get users api</h1>
       </StPageHeader>
       <StSection>
         <StButton type="button" onClick={() => clickEvent.next()}> api Get </StButton>
@@ -53,4 +54,4 @@ function ReduxHooksRxjs ({ users }: { users: User[] }) {
   )
 }
 
-export default ReduxHooksRxjs;
+export default RxjsReduxHooks;

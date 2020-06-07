@@ -1,6 +1,6 @@
 import React from 'react';
 import Nav from './nav';
-import logo from './logo.svg';
+import logo from '../../../assets/logo.svg';
 import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 

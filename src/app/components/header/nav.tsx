@@ -38,18 +38,18 @@ function Nav() {
   const navItems = [
     {
       id: 1,
-      title: 'styled',
-      to: '/styled',
+      title: 'Start',
+      to: '/',
     },
     {
       id: 2,
-      title: 'redux-hooks-rxjs',
-      to: '/redux-hooks-rxjs',
+      title: 'Styled',
+      to: '/styled',
     },
     {
       id: 3,
-      title: 'temp',
-      to: '/temp',
+      title: 'RxJS-Redux-Hooks',
+      to: '/rxjs-redux-hooks',
     },
   ];
 

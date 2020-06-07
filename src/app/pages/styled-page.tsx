@@ -5,7 +5,7 @@ function StyledPage() {
   return (
     <StPageContainer>
       <StPageHeader>
-        <h1>styled button</h1>
+        <h1>Styled Button</h1>
       </StPageHeader>
       <StSection>
         <StButton type="button">test</StButton>

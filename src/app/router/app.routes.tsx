@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const PlaygroundHome = React.lazy(() => import('../pages/playground-home'));
 const StyledPage = React.lazy(() => import('../pages/styled-page'));
-const ReduxHooksRxjsContiner = React.lazy(() => import('../pages/redux-hooks-rxjs-c'));
+const RxjsReduxHooksContiner = React.lazy(() => import('../pages/rxjs-redux-hooks-c'));
 
 const Div = styled.div`
   margin 20px 0;
@@ -22,8 +22,7 @@ function Routes() {
         <Switch>
             <Route exact path="/" component={PlaygroundHome} />
             <Route path="/styled" component={StyledPage} />
-            <Route path="/redux-hooks-rxjs" component={ReduxHooksRxjsContiner} />
-            <Route path="/temp" />
+            <Route path="/rxjs-redux-hooks" component={RxjsReduxHooksContiner} />
             <Redirect path="*" to="/" />
         </Switch>
       </Suspense>

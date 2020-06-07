@@ -1,7 +1,7 @@
 # Playground with React
 
-### Summary
-React와 관련하여 개인적으로 이것저것 샘플로 구현해보는 놀이터입니다.
+### Info
+React와 관련하여 개인적으로 이것저것 구현해보는 곳입니다.
   
 ### Used
 1. TypeScript

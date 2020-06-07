@@ -12,7 +12,7 @@ const LocStSection = styled(StSection)`
   padding-top: 30px;
   display: flex;
   flex-wrap: wrap;
-  width: 800px;
+  width: 600px;
 `;
 const StHeader = styled.header`
   margin-bottom: 10px;
@@ -21,7 +21,7 @@ const StHeader = styled.header`
   }
 `;
 const Content = styled.div`
-  width: 160px;
+  width: 100px;
   margin: 0 20px;
 `;
 const StP = styled.p`
@@ -32,13 +32,13 @@ const Img = styled.img`
   left: 0;
   top: 0;
   object-fit: cover;
-  width: 160px;
-  height: 160px;
+  width: 100px;
+  height: 100px;
 `;
 const ImgWrapper = styled.div`
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 100px;
+  height: 100px;
 `;
 const H4 = styled.h4`
   font-weight: 300;
@@ -58,9 +58,7 @@ function PlaygroundHome() {
       </StHeader>
       <StSection>
         <StP>
-          React와 관련하여 이것저것 구현해보는 놀이터입니다.<br/><br/>
-          Angular(2+ not AngularJS)에서부터 사용하여 익숙한 TypeScript를 기본으로 사용하고<br/>
-          RxJS가 좋아서 DOM이벤트나 api처리에 사용하고자 합니다.<br/>
+          React와 관련하여 이것저것 구현해보는 곳입니다.
         </StP>
       </StSection>
       <StHeader>

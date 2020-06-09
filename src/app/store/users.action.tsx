@@ -5,4 +5,4 @@ const setUser = createAction('SET USER', (users: User[]) => ({ payload: { users 
 
 export const userAction = {
   setUser,
-}
+};

@@ -8,7 +8,7 @@ function RxjsReduxHooksContiner () {
 
   return (
     <RxjsReduxHooks users={users} />
-  )
+  );
 }
 
 export default RxjsReduxHooksContiner;

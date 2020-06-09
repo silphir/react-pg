@@ -1,7 +1,7 @@
 import React from "react";
 import { Subject } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { switchMap, tap } from 'rxjs/operators'
+import { switchMap, tap } from 'rxjs/operators';
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
 import { User } from "../store/users.state";
@@ -51,7 +51,7 @@ function RxjsReduxHooks ({ users }: { users: User[] }) {
         </StUl>
       </StSection>
     </StPageContainer>
-  )
+  );
 }
 
 export default RxjsReduxHooks;

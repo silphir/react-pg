@@ -4,6 +4,6 @@ import { userAction } from "./users.action";
 
 export const userReducer = createReducer(initialState, {
   [userAction.setUser.type]: (state, action) => {
-    return { ...state, users: action.payload.users }
+    return { ...state, users: action.payload.users };
   }
 });

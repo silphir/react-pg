@@ -14,7 +14,7 @@ const Div = styled.div`
 `;
 const StContent = styled.div`
   padding-top: 64px;
-`
+`;
 function Routes() {
   return (
     <StContent>

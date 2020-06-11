@@ -6,6 +6,12 @@ export const StPageHeader = styled.header`
     font-size: 1.8rem;
   }
 `;
+export const StHeader = styled.header`
+  margin-bottom: 10px;
+  h2 {
+    font-size: 1.3rem;
+  }
+`;
 export const StSection = styled.section`
   margin-bottom: 15px;
 `;

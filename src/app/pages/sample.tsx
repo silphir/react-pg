@@ -8,11 +8,11 @@ import {
   StPageContainer
 } from '../components/common-styled';
 
-function StyledPage() {
+function Sample() {
   return (
     <StPageContainer>
       <StPageHeader>
-        <h1>Styled Button</h1>
+        <h1>Buttons</h1>
       </StPageHeader>
       <StSection>
         <StButton type="button">test</StButton>
@@ -27,4 +27,4 @@ function StyledPage() {
   );
 }
 
-export default StyledPage;
+export default Sample;

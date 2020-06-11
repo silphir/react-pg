@@ -6,19 +6,13 @@ import typescriptLogo from '../../assets/typescript.svg';
 import reduxLogo from '../../assets/redux.svg';
 import reactRouterLogo from '../../assets/react-router.png';
 import rxjsLogo from '../../assets/rxjs.png';
-import { StPageHeader, StSection, StPageContainer } from '../components/common-styled';
+import { StPageHeader, StSection, StPageContainer, StHeader } from '../components/common-styled';
 
 const LocStSection = styled(StSection)`
   padding-top: 30px;
   display: flex;
   flex-wrap: wrap;
   width: 600px;
-`;
-const StHeader = styled.header`
-  margin-bottom: 10px;
-  h2 {
-    font-size: 1.3rem;
-  }
 `;
 const Content = styled.div`
   width: 100px;
@@ -47,7 +41,7 @@ const H4 = styled.h4`
   text-align: center;
 `;
 
-function PlaygroundHome() {
+function Home() {
   return (
     <StPageContainer>
       <StPageHeader>
@@ -120,4 +114,4 @@ function PlaygroundHome() {
   );
 }
 
-export default PlaygroundHome;
+export default Home;

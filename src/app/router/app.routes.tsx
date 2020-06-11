@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-const PlaygroundHome = React.lazy(() => import('../pages/playground-home'));
-const StyledPage = React.lazy(() => import('../pages/styled-page'));
-const RxjsReduxHooksContiner = React.lazy(() => import('../pages/rxjs-redux-hooks-c'));
-const RegistFormPage = React.lazy(() => import('../pages/regist-form-page'));
+const Home = React.lazy(() => import('../pages/home'));
+const Sample = React.lazy(() => import('../pages/sample'));
+const Users = React.lazy(() => import('../pages/users'));
+const Signup = React.lazy(() => import('../pages/signup'));
 
 const Div = styled.div`
   margin 20px 0;
@@ -21,10 +21,10 @@ function Routes() {
     <StContent>
       <Suspense fallback={<Div>Loading...</Div>}>
         <Switch>
-            <Route exact path="/" component={PlaygroundHome} />
-            <Route path="/styled" component={StyledPage} />
-            <Route path="/rxjs-redux-hooks" component={RxjsReduxHooksContiner} />
-            <Route path="/regist" component={RegistFormPage} />
+            <Route exact path="/" component={Home} />
+            <Route path="/sample" component={Sample} />
+            <Route path="/users" component={Users} />
+            <Route path="/signup" component={Signup} />
             <Redirect path="*" to="/" />
         </Switch>
       </Suspense>

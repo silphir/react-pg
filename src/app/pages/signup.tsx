@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { InputForm } from '../components/form';
 import { StPageContainer, StPageHeader, StSection } from '../components/common-styled';
 
-function RegistFormPage() {
+function SignUp() {
   const [ name, setName ] = useState('');
 
   return (
     <StPageContainer>
       <StPageHeader>
-        <h1>User Regist</h1>
+        <h1>Sign Up</h1>
       </StPageHeader>
       <StSection>
-        <InputForm labelText='testlabel' type='input' value={ name } onChange={(e) => setName(e.currentTarget.value)} />
+        <InputForm labelText='name' type='text' value={ name } onChange={(e) => setName(e.currentTarget.value)} />
       </StSection>
     </StPageContainer>
   );
 }
 
-export default RegistFormPage;
+export default SignUp;

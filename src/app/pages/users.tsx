@@ -1,14 +1,14 @@
 import React from "react";
-import RxjsReduxHooks from "./rxjs-redux-hooks";
+import UserList from "./userlist";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/users.state";
 
-function RxjsReduxHooksContiner () {
+function Users () {
   const users = useSelector(selectUser);
 
   return (
-    <RxjsReduxHooks users={users} />
+    <UserList users={users} />
   );
 }
 
-export default RxjsReduxHooksContiner;
+export default Users;

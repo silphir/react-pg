@@ -24,7 +24,7 @@ const StUl = styled.ul`
   }
 `;
 
-function RxjsReduxHooks ({ users }: { users: User[] }) {
+function UserList ({ users }: { users: User[] }) {
   const dispatch = useDispatch();
   
   const clickEvent = new Subject<void>();
@@ -47,10 +47,10 @@ function RxjsReduxHooks ({ users }: { users: User[] }) {
   return (
     <StPageContainer>
       <StPageHeader>
-        <h1>use Redux, RxJS, Hooks - get users api</h1>
+        <h1>User List</h1>
       </StPageHeader>
       <StSection>
-        <StButton type="button" onClick={() => clickEvent.next()}> api Get </StButton>
+        <StButton type="button" onClick={() => clickEvent.next()}> 조회 </StButton>
         <StUl>
           { UserList }
         </StUl>
@@ -59,4 +59,4 @@ function RxjsReduxHooks ({ users }: { users: User[] }) {
   );
 }
 
-export default RxjsReduxHooks;
+export default UserList;

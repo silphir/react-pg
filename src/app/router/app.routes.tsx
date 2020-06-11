@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const PlaygroundHome = React.lazy(() => import('../pages/playground-home'));
 const StyledPage = React.lazy(() => import('../pages/styled-page'));
 const RxjsReduxHooksContiner = React.lazy(() => import('../pages/rxjs-redux-hooks-c'));
+const RegistFormPage = React.lazy(() => import('../pages/regist-form-page'));
 
 const Div = styled.div`
   margin 20px 0;
@@ -23,6 +24,7 @@ function Routes() {
             <Route exact path="/" component={PlaygroundHome} />
             <Route path="/styled" component={StyledPage} />
             <Route path="/rxjs-redux-hooks" component={RxjsReduxHooksContiner} />
+            <Route path="/regist" component={RegistFormPage} />
             <Redirect path="*" to="/" />
         </Switch>
       </Suspense>

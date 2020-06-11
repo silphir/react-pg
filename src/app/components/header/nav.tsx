@@ -51,6 +51,11 @@ function Nav() {
       title: 'RxJS-Redux-Hooks',
       to: '/rxjs-redux-hooks',
     },
+    {
+      id: 4,
+      title: 'Regist-Page',
+      to: '/regist',
+    },
   ];
 
   const navChildren = navItems.map(item => (

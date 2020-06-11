@@ -5,7 +5,12 @@ import { switchMap, tap } from 'rxjs/operators';
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
 import { User } from "../store/users.state";
-import { StButton, StPageContainer, StPageHeader, StSection } from "../components/common-styled";
+import { 
+  StButton,
+  StPageContainer,
+  StPageHeader,
+  StSection
+} from "../components/common-styled";
 import styled from "styled-components";
 
 const StUl = styled.ul`

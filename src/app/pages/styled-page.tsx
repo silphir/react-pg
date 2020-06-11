@@ -1,5 +1,12 @@
 import React from 'react';
-import { StPageHeader, StSection, StButton, StButtonMd, StButtonLg, StPageContainer } from '../components/common-styled';
+import {
+  StPageHeader,
+  StSection,
+  StButton,
+  StButtonMd,
+  StButtonLg,
+  StPageContainer
+} from '../components/common-styled';
 
 function StyledPage() {
   return (

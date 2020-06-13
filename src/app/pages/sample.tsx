@@ -1,29 +1,37 @@
 import React from 'react';
 import {
-  StPageHeader,
-  StSection,
-  StButton,
-  StButtonMd,
-  StButtonLg,
-  StPageContainer
+  PageHeader,
+  SectionBody,
+  Button,
+  ButtonLg,
+  ButtonXl,
+  PageContainer,
+  ButtonXs,
+  ButtonSm
 } from '../components/common-styled';
 
 function Sample() {
   return (
-    <StPageContainer>
-      <StPageHeader>
+    <PageContainer>
+      <PageHeader>
         <h1>Buttons</h1>
-      </StPageHeader>
-      <StSection>
-        <StButton type="button">test</StButton>
-      </StSection>
-      <StSection>
-        <StButtonMd type="button">test</StButtonMd>
-      </StSection>
-      <StSection>
-        <StButtonLg type="button">test</StButtonLg>
-      </StSection>
-    </StPageContainer>
+      </PageHeader>
+      <SectionBody>
+        <ButtonXs type="button">test</ButtonXs>
+      </SectionBody>
+      <SectionBody>
+        <ButtonSm type="button">test</ButtonSm>
+      </SectionBody>
+      <SectionBody>
+        <Button type="button">test</Button>
+      </SectionBody>
+      <SectionBody>
+        <ButtonLg type="button">test</ButtonLg>
+      </SectionBody>
+      <SectionBody>
+        <ButtonXl type="button">test</ButtonXl>
+      </SectionBody>
+    </PageContainer>
   );
 }
 

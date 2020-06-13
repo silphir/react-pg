@@ -6,9 +6,17 @@ import typescriptLogo from '../../assets/typescript.svg';
 import reduxLogo from '../../assets/redux.svg';
 import reactRouterLogo from '../../assets/react-router.png';
 import rxjsLogo from '../../assets/rxjs.png';
-import { StPageHeader, StSection, StPageContainer, StHeader } from '../components/common-styled';
+import {
+  PageHeader,
+  SectionBody,
+  PageContainer,
+  SectionHeader
+} from '../components/common-styled';
 
-const LocStSection = styled(StSection)`
+const P = styled.p`
+  color: #555;
+`;
+const LocSectionBody = styled(SectionBody)`
   padding-top: 30px;
   display: flex;
   flex-wrap: wrap;
@@ -17,100 +25,97 @@ const LocStSection = styled(StSection)`
 const Content = styled.div`
   width: 100px;
   margin: 0 20px;
-`;
-const StP = styled.p`
-  color: #555;
-`;
-const Img = styled.img`
-  position: absolute;
-  left: 0;
-  top: 0;
-  object-fit: cover;
-  width: 100px;
-  height: 100px;
-`;
-const ImgWrapper = styled.div`
-  position: relative;
-  width: 100px;
-  height: 100px;
-`;
-const H4 = styled.h4`
-  font-weight: 300;
-  color: #555;
-  margin-top: 1.125rem;
-  text-align: center;
+  > div {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    > img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+      width: 100px;
+      height: 100px;
+    }
+  }
+  h4 {
+    font-weight: 300;
+    color: #555;
+    margin-top: 1.125rem;
+    text-align: center;
+  }
 `;
 
 function Home() {
   return (
-    <StPageContainer>
-      <StPageHeader>
+    <PageContainer>
+      <PageHeader>
         <h1>React Playground :)</h1>
-      </StPageHeader>
-      <StHeader>
+      </PageHeader>
+      <SectionHeader>
         <h2>About</h2>
-      </StHeader>
-      <StSection>
-        <StP>
+      </SectionHeader>
+      <SectionBody>
+        <P>
           React와 관련하여 이것저것 구현해보는 곳입니다.
-        </StP>
-      </StSection>
-      <StHeader>
+        </P>
+      </SectionBody>
+      <SectionHeader>
         <h2>Used</h2>
-      </StHeader>
-      <LocStSection>
+      </SectionHeader>
+      <LocSectionBody>
         <Content>
-          <ImgWrapper>
-            <Img src={typescriptLogo} />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={typescriptLogo} alt="typescript logo"/>
+          </div>
+          <h4>
             TypeScript
-          </H4>
+          </h4>
         </Content>
         <Content>
-          <ImgWrapper>
-            <Img src={reactLogo} alt="react logo" />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={reactLogo} alt="react logo"/>
+          </div>
+          <h4>
             React<br/>
             Hooks
-          </H4>
+          </h4>
         </Content>
         <Content>
-          <ImgWrapper>
-            <Img src={reactRouterLogo} />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={reactRouterLogo} alt="react router logo"/>
+          </div>
+          <h4>
             React Router
-          </H4>
+          </h4>
         </Content>
         <Content>
-          <ImgWrapper>
-            <Img src={styledCompLogo} />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={styledCompLogo}  alt="styled components logo"/>
+          </div>
+          <h4>
             Styled Components
-          </H4>
+          </h4>
         </Content>
         <Content>
-          <ImgWrapper>
-            <Img src={rxjsLogo} />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={rxjsLogo}  alt="rxjs logo"/>
+          </div>
+          <h4>
             RxJS
-          </H4>
+          </h4>
         </Content>
         <Content>
-          <ImgWrapper>
-            <Img src={reduxLogo} />
-          </ImgWrapper>
-          <H4>
+          <div>
+            <img src={reduxLogo}  alt="redux logo"/>
+          </div>
+          <h4>
             Redux<br/>
             Redux Toolkit
-          </H4>
+          </h4>
         </Content>
-      </LocStSection>
-    </StPageContainer>
+      </LocSectionBody>
+    </PageContainer>
   );
 }
 

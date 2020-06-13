@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { InputForm } from '../components/form';
-import { StPageContainer, StPageHeader, StSection, StButton } from '../components/common-styled';
+import { PageContainer, PageHeader, SectionBody, Button } from '../components/common-styled';
 import styled from 'styled-components';
 
-const FormBody = styled.div`
+const FormBodyDiv = styled.div`
   width: 25%;
 `;
 
@@ -63,20 +63,20 @@ function SignUp() {
   };
 
   return (
-    <StPageContainer>
-      <StPageHeader>
+    <PageContainer>
+      <PageHeader>
         <h1>Sign Up</h1>
-      </StPageHeader>
-      <StSection>
+      </PageHeader>
+      <SectionBody>
         <form onSubmit={submitForm}>
-        <FormBody>
-          <InputForm labelText='name' type='text' name='name' value={userForm.name} validationMsg={userFormErrMsg.name} onChange={validateChangeForm} />
-          <InputForm labelText='e-mail' type='email' name='email' value={userForm.email} validationMsg={userFormErrMsg.email} onChange={validateChangeForm} />
-        </FormBody>
-        <StButton>전송</StButton>
+          <FormBodyDiv>
+            <InputForm labelText='name' type='text' name='name' value={userForm.name} validationMsg={userFormErrMsg.name} onChange={validateChangeForm} />
+            <InputForm labelText='e-mail' type='email' name='email' value={userForm.email} validationMsg={userFormErrMsg.email} onChange={validateChangeForm} />
+          </FormBodyDiv>
+          <Button>전송</Button>
         </form>
-      </StSection>
-    </StPageContainer>
+      </SectionBody>
+    </PageContainer>
   );
 }
 

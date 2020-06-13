@@ -6,14 +6,14 @@ import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
 import { User } from "../store/users.state";
 import { 
-  StButton,
-  StPageContainer,
-  StPageHeader,
-  StSection
+  Button,
+  PageContainer,
+  PageHeader,
+  SectionBody
 } from "../components/common-styled";
 import styled from "styled-components";
 
-const StUl = styled.ul`
+const Ul = styled.ul`
   list-style: none;
   font-size: 1.05rem;
   font-weight: 500;
@@ -45,17 +45,17 @@ function UserList ({ users }: { users: User[] }) {
   ));
 
   return (
-    <StPageContainer>
-      <StPageHeader>
+    <PageContainer>
+      <PageHeader>
         <h1>User List</h1>
-      </StPageHeader>
-      <StSection>
-        <StButton type="button" onClick={() => clickEvent.next()}> 조회 </StButton>
-        <StUl>
+      </PageHeader>
+      <SectionBody>
+        <Button type="button" onClick={() => clickEvent.next()}> 조회 </Button>
+        <Ul>
           { UserList }
-        </StUl>
-      </StSection>
-    </StPageContainer>
+        </Ul>
+      </SectionBody>
+    </PageContainer>
   );
 }
 

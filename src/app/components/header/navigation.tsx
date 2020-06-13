@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink as navlink } from 'react-router-dom';
 
-const Stnav = styled.nav`
+const Nav = styled.nav`
   padding: 0 20px;
   margin: 0 0 0 auto;
   align-items: stretch;
@@ -11,8 +11,8 @@ const Stnav = styled.nav`
     list-style: none;
   }
 `;
-const Indicator = styled.div``;
-const StNavLink = styled(NavLink)`
+const IndicatorDiv = styled.div``;
+const NavLink = styled(navlink)`
   height: 61px;
   text-decoration: none;
   color: #bbb;
@@ -26,7 +26,7 @@ const StNavLink = styled(NavLink)`
   }
   &.active {
     color: #0084ac;
-    ~${Indicator} {
+    ~${IndicatorDiv} {
       margin-top: auto;
       height: 4px;
       background-color: #0084ac;
@@ -34,7 +34,7 @@ const StNavLink = styled(NavLink)`
   }
 `;
 
-function Nav() {
+function Navigation() {
   const navItems = [
     {
       id: 1,
@@ -60,20 +60,20 @@ function Nav() {
 
   const navChildren = navItems.map(item => (
     <li key={item.id}>
-      <StNavLink exact to={item.to} >
+      <NavLink exact to={item.to} >
         {item.title}
-      </StNavLink>
-      <Indicator></Indicator>
+      </NavLink>
+      <IndicatorDiv></IndicatorDiv>
     </li>
   ));
 
   return (
-    <Stnav>
+    <Nav>
       <ul>
         {navChildren}
       </ul>
-    </Stnav>
+    </Nav>
   );
 }
 
-export default Nav;
+export default Navigation;

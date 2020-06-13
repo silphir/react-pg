@@ -1,10 +1,10 @@
 import React from 'react';
-import Nav from './nav';
+import Navigation from './navigation';
 import logo from '../../../assets/logo.svg';
 import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
-const AppLogoSpin = keyframes`
+const LogoSpin = keyframes`
   from {
     transform: rotate(0deg);
   }
@@ -12,7 +12,7 @@ const AppLogoSpin = keyframes`
     transform: rotate(360deg);
   }
 `;
-const StTopheader = styled.header`
+const TopHeader = styled.header`
   box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .3);
   position: fixed;
   top: 0;
@@ -25,21 +25,21 @@ const StTopheader = styled.header`
     height: 65px;
     img {
       width: 85px;
-      animation:${AppLogoSpin} infinite 20s linear;
+      animation:${LogoSpin} infinite 20s linear;
     }
   }
 `;
 
 function Header() {
   return (
-    <StTopheader>
+    <TopHeader>
       <div>
         <NavLink exact to='/'>
           <img src={logo} alt="logo" />
         </NavLink>
-        <Nav></Nav>
+        <Navigation></Navigation>
       </div>
-    </StTopheader>
+    </TopHeader>
   );
 }
 

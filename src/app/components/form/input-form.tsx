@@ -30,19 +30,20 @@ const InputDiv = styled.div`
   }
 `;
 
-export const InputForm = ({ labelText, name, type, value, validationMsg, onChange }: {
+export const InputForm = ({ labelText, name, type, value, validationMsg, onChange, onBlur }: {
   labelText: string;
   name: string;
   type: string;
   value: string;
   validationMsg: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onBlur: React.FocusEventHandler<HTMLInputElement>;
 }) => {
   return (
     <InputDiv>
       <label>
         <span>{labelText}</span>
-        <input type={type} name={name} value={value} onChange={onChange}></input>
+        <input type={type} name={name} value={value} onChange={onChange} onBlur={onBlur}></input>
       </label>
       <span>{validationMsg}</span>
     </InputDiv>

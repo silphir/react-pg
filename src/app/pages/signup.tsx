@@ -18,48 +18,55 @@ function SignUp() {
     email: ''
   });
 
-  const validate = (controlName: string, controlValue: string) => {
-    let message = '';
-    switch(controlName) {
-      case 'name':
-        message = nameValidator(controlValue);
-        break;
-      case 'email':
-        message = emailValidator(controlValue);
-        break;
-    }
-    return message;    
-  };
-
-  const nameValidator = (v: string) => {
+  const nameValidate = (v: string) => {
     if (v.length < 1) return 'invalid user name.';
     else return '';
   };
 
-  const emailValidator = (v: string) => {
+  const emailValidate = (v: string) => {
     // eslint-disable-next-line no-useless-escape, no-case-declarations
     const regexr = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z]?)*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
     if (!regexr.test(v)) return 'invalid email.';
     else return '';
   };
 
-  const validateChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setUserForm({ ...userForm, [e.currentTarget.name]: e.currentTarget.value });
-    setUserFormErrMsg({ ...userFormErrMsg, [e.currentTarget.name]: validate(e.currentTarget.name, e.currentTarget.value) });
+  const validate = (controlName: string, controlValue: string) => {
+    switch(controlName) {
+      case 'name':
+        return nameValidate(controlValue);
+      case 'email':
+        return emailValidate(controlValue);
+    }
   };
 
-  const validateSubmitForm = () => {
-    const resultForm = Object.entries(userForm).reduce((main, [k, v]) => ({...main, [k]: validate(k, v) }), userFormErrMsg);
-    setUserFormErrMsg(resultForm);
+  const validateControl = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserForm({ 
+      ...userForm,
+      [e.currentTarget.name]: e.currentTarget.value
+    });
+    setUserFormErrMsg({
+      ...userFormErrMsg,
+      [e.currentTarget.name]: validate(e.currentTarget.name, e.currentTarget.value)
+    });
+  };
 
+  const validateForm = () => {
+    const resultForm = Object.entries(userForm)
+                             .reduce((errors, [k, v]) => ({...errors, [k]: validate(k, v) }), userFormErrMsg);
+
+    setUserFormErrMsg(resultForm);
     if (Object.values(resultForm).every(v => !v)) return true;
     else return false;
   };
 
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(validateSubmitForm()) console.log('success');
-    else console.log('failure');
+
+    if(validateForm()) {
+      console.log('valid');
+    } else {
+      console.log('invalid');
+    }
   };
 
   return (
@@ -70,8 +77,16 @@ function SignUp() {
       <SectionBody>
         <form onSubmit={submitForm}>
           <FormBodyDiv>
-            <InputForm labelText='name' type='text' name='name' value={userForm.name} validationMsg={userFormErrMsg.name} onChange={validateChangeForm} />
-            <InputForm labelText='e-mail' type='email' name='email' value={userForm.email} validationMsg={userFormErrMsg.email} onChange={validateChangeForm} />
+            <InputForm
+              labelText='name' type='text' name='name'
+              value={userForm.name} validationMsg={userFormErrMsg.name} 
+              onChange={validateControl} onBlur={validateControl}
+            />
+            <InputForm
+              labelText='e-mail' type='email' name='email' 
+              value={userForm.email} validationMsg={userFormErrMsg.email}
+              onChange={validateControl} onBlur={validateControl}
+            />
           </FormBodyDiv>
           <Button>전송</Button>
         </form>

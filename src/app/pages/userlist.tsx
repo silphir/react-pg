@@ -1,7 +1,6 @@
-import React from "react";
-import { Subject } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
-import { switchMap, tap } from 'rxjs/operators';
+import React, { useEffect } from "react";
+import { Subject, EMPTY } from 'rxjs';
+import { switchMap, tap, catchError } from 'rxjs/operators';
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
 import { User } from "../store/users.state";
@@ -12,6 +11,7 @@ import {
   SectionBody
 } from "../components/common-styled";
 import styled from "styled-components";
+import { restApi } from "../api/api";
 
 const Ul = styled.ul`
   list-style: none;
@@ -24,19 +24,31 @@ const Ul = styled.ul`
   }
 `;
 
-function UserList ({ users }: { users: User[] }) {
+function UserList (
+  { users }: { users: User[] }
+) {
   const dispatch = useDispatch();
-  
   const clickEvent = new Subject<void>();
-  clickEvent.pipe(
-    switchMap(() => 
-      ajax.getJSON<{ data: User[] }>('http://localhost:20000/people').pipe(
-        tap(({ data }) => {
-          dispatch(userAction.setUser(data));
-        }),
+
+  useEffect(() => {
+    const sub = clickEvent.pipe(
+      switchMap(() => 
+        restApi.getUsers().pipe(
+          tap(({ data }) => {
+            dispatch(userAction.setUser(data));
+          }),
+          catchError(({ response })=> {
+            console.log(response.message);
+            return EMPTY;
+          })
+        )
       )
-    )
-  ).subscribe();
+    ).subscribe();
+
+    return () => {
+      sub.unsubscribe();
+    };
+  }, []);
   
   const UserList = users.map((user: User, index) => (
     <li key={index}>

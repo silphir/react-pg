@@ -2,6 +2,7 @@ import { createSelector } from "@reduxjs/toolkit";
 
 export interface User {
   name: string;
+  email: string;
 }
 
 export interface UserState {

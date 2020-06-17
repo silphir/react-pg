@@ -32,22 +32,21 @@ function UserList (
 
   useEffect(() => {
     const sub = clickEvent.pipe(
-      switchMap(() => 
-        restApi.getUsers().pipe(
-          tap(({ data }) => {
-            dispatch(userAction.setUser(data));
-          }),
-          catchError(({ response })=> {
-            console.log(response.message);
-            return EMPTY;
-          })
-        )
-      )
+      switchMap(() => restApi.getUsers().pipe(
+        tap(({ data }) => {
+          dispatch(userAction.setUser(data));
+        }),
+        catchError(({ response })=> {
+          console.log(response.message);
+          return EMPTY;
+        })
+      ))
     ).subscribe();
 
     return () => {
       sub.unsubscribe();
     };
+  // eslint-disable-next-line
   }, []);
   
   const UserList = users.map((user: User, index) => (

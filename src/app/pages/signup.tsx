@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { InputForm } from '../components/form';
 import { PageContainer, PageHeader, SectionBody, Button } from '../components/common-styled';
 import styled from 'styled-components';
+import { restApi } from '../api/api';
+import { catchError } from 'rxjs/operators';
+import { EMPTY, Subscription } from 'rxjs';
 
 const FormBodyDiv = styled.div`
   width: 25%;
@@ -9,17 +12,33 @@ const FormBodyDiv = styled.div`
 
 function SignUp() {
   const [ userForm, setUserForm ] = useState({
+    nickName: '',
     name: '',
     email: ''
   });
 
   const [ userFormErrMsg, setUserFormErrMsg ] = useState({
+    nickName: '',
     name: '',
     email: ''
   });
 
+  let sub = new Subscription();
+
+  useEffect(() => {
+    return () => {
+      sub.unsubscribe();
+    };
+  // eslint-disable-next-line
+  }, []);
+
+  const nickNameValidate = (v: string) => {
+    if (v.length < 1) return 'invalid nick name.';
+    else return '';
+  };
+
   const nameValidate = (v: string) => {
-    if (v.length < 1) return 'invalid user name.';
+    if (v.length < 1) return 'invalid name.';
     else return '';
   };
 
@@ -32,6 +51,8 @@ function SignUp() {
 
   const validate = (controlName: string, controlValue: string) => {
     switch(controlName) {
+      case 'nickName':
+        return nickNameValidate(controlValue);
       case 'name':
         return nameValidate(controlValue);
       case 'email':
@@ -51,10 +72,11 @@ function SignUp() {
   };
 
   const validateForm = () => {
-    const resultForm = Object.entries(userForm)
-                             .reduce((errors, [k, v]) => ({...errors, [k]: validate(k, v) }), userFormErrMsg);
-
+    const resultForm = Object
+                        .entries(userForm)
+                        .reduce((errors, [k, v]) => ({...errors, [k]: validate(k, v) }), userFormErrMsg);
     setUserFormErrMsg(resultForm);
+
     if (Object.values(resultForm).every(v => !v)) return true;
     else return false;
   };
@@ -62,10 +84,17 @@ function SignUp() {
   const submitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if(validateForm()) {
-      console.log('valid');
-    } else {
+    if(!validateForm()) {
       console.log('invalid');
+    } else {
+      sub = restApi.insertUser(userForm).pipe(
+        catchError(({ response }) => {
+          console.log(response.message);
+          return EMPTY;
+        })
+      ).subscribe(({ response }) => {
+        alert(response.message);
+      });
     }
   };
 
@@ -77,6 +106,11 @@ function SignUp() {
       <SectionBody>
         <form onSubmit={submitForm}>
           <FormBodyDiv>
+            <InputForm
+              labelText='nickName' type='text' name='nickName' 
+              value={userForm.nickName} validationMsg={userFormErrMsg.nickName}
+              onChange={validateControl} onBlur={validateControl}
+            />
             <InputForm
               labelText='name' type='text' name='name'
               value={userForm.name} validationMsg={userFormErrMsg.name} 

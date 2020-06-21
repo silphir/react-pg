@@ -17,11 +17,11 @@ import UserList from "./userlist";
 function Users () {
   const users = useSelector(selectUser);
   const dispatch = useDispatch();
-  const clickEvent = new Subject<void>();
+  const searchClick$ = new Subject<void>();
 
   useEffect(() => {
-    const sub = clickEvent.pipe(
-      switchMap(() => restApi.getUsers().pipe(
+    const sub = searchClick$.pipe(
+      switchMap(() => restApi.getUsers$().pipe(
         tap(({ data }) => {
           dispatch(userAction.setUser(data));
         }),
@@ -35,8 +35,7 @@ function Users () {
     return () => {
       sub.unsubscribe();
     };
-  // eslint-disable-next-line
-  }, []);
+  }, [dispatch, searchClick$]);
   
   return (
     <PageContainer>
@@ -44,7 +43,7 @@ function Users () {
         <h1>User List</h1>
       </PageHeader>
       <SectionBody>
-        <Button type="button" onClick={() => clickEvent.next()}> 조회 </Button>
+        <Button type="button" onClick={() => searchClick$.next()}> 조회 </Button>
         <UserList users={users}></UserList>
       </SectionBody>
     </PageContainer>

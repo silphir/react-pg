@@ -87,7 +87,7 @@ function SignUp() {
     if(!validateForm()) {
       console.log('invalid');
     } else {
-      sub = restApi.insertUser(userForm).pipe(
+      sub = restApi.insertUser$(userForm).pipe(
         catchError(({ response }) => {
           console.log(response.message);
           return EMPTY;

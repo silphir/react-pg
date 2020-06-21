@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { InputForm } from '../components/form';
 import { PageContainer, PageHeader, SectionBody, Button } from '../components/common-styled';
 import styled from 'styled-components';
@@ -23,11 +23,10 @@ function SignUp() {
     email: ''
   });
 
-  let sub = new Subscription();
-
+  const sub = useRef(new Subscription());
   useEffect(() => {
     return () => {
-      sub.unsubscribe();
+      sub.current.unsubscribe();
     };
   // eslint-disable-next-line
   }, []);
@@ -87,7 +86,7 @@ function SignUp() {
     if(!validateForm()) {
       console.log('invalid');
     } else {
-      sub = restApi.insertUser$(userForm).pipe(
+      sub.current = restApi.insertUser$(userForm).pipe(
         catchError(({ response }) => {
           console.log(response.message);
           return EMPTY;

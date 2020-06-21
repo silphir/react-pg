@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Subject, EMPTY } from 'rxjs';
+import React, { useEffect, useRef } from "react";
+import { Subject, EMPTY, Subscription } from 'rxjs';
 import { switchMap, tap, catchError } from 'rxjs/operators';
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
@@ -18,25 +18,25 @@ function Users () {
   const users = useSelector(selectUser);
   const dispatch = useDispatch();
   const searchClick$ = new Subject<void>();
-
+  const sub = useRef(new Subscription());
   useEffect(() => {
-    const sub = searchClick$.pipe(
-      switchMap(() => restApi.getUsers$().pipe(
-        tap(({ data }) => {
-          dispatch(userAction.setUser(data));
-        }),
-        catchError(({ response })=> {
-          console.log(response.message);
-          return EMPTY;
-        })
-      ))
-    ).subscribe();
-
     return () => {
-      sub.unsubscribe();
+      sub.current.unsubscribe();
     };
-  }, [dispatch, searchClick$]);
+  }, [sub]);
   
+  sub.current = searchClick$.pipe(
+    switchMap(() => restApi.getUsers$().pipe(
+      tap(({ data }) => {
+        dispatch(userAction.setUser(data));
+      }),
+      catchError(({ response })=> {
+        console.log(response.message);
+        return EMPTY;
+      })
+    ))
+  ).subscribe();
+
   return (
     <PageContainer>
       <PageHeader>

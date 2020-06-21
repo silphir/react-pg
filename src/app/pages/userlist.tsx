@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { User } from "../store/users.state";
 import styled from "styled-components";
 import { ButtonSm } from "../components/common-styled";
-import { Subject, EMPTY } from "rxjs";
+import { Subject, EMPTY, Subscription } from "rxjs";
 import { switchMap, catchError, tap } from "rxjs/operators";
 import { restApi } from "../api/api";
 import { useDispatch } from "react-redux";
@@ -58,30 +58,30 @@ function UserList (
 ) {
   const dispatch = useDispatch();
   const deleteClick$ = new Subject<string>();
-
+  const sub = useRef(new Subscription());
   useEffect(() => {
-    const sube = deleteClick$.pipe(
-      switchMap((id) => restApi.deleteUser$(id).pipe(
-        switchMap(() => restApi.getUsers$().pipe(
-          tap(({ data }) => {
-            dispatch(userAction.setUser(data));
-          }),
-          catchError(({ response })=> {
-            console.log(response.message);
-            return EMPTY;
-          })
-        )),
+    return () => {
+      sub.current.unsubscribe();
+    };
+  }, [sub]);
+
+  sub.current = deleteClick$.pipe(
+    switchMap((id) => restApi.deleteUser$(id).pipe(
+      switchMap(() => restApi.getUsers$().pipe(
+        tap(({ data }) => {
+          dispatch(userAction.setUser(data));
+        }),
         catchError(({ response })=> {
           console.log(response.message);
           return EMPTY;
         })
-      ))
-    ).subscribe();
-
-    return () => {
-      sube.unsubscribe();
-    };
-  }, [dispatch, deleteClick$]);
+      )),
+      catchError(({ response })=> {
+        console.log(response.message);
+        return EMPTY;
+      })
+    ))
+  ).subscribe();
 
   return (
     <Ul>

@@ -1,6 +1,12 @@
 import { createSelector } from "@reduxjs/toolkit";
 
+export interface UserForm {
+  nickName: string;
+  name: string;
+  email: string;
+}
 export interface User {
+  id: string;
   nickName: string;
   name: string;
   email: string;

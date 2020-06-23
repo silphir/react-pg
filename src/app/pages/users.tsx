@@ -17,7 +17,7 @@ import UserList from "./userlist";
 function Users () {
   const users = useSelector(selectUser);
   const dispatch = useDispatch();
-  const searchClick$ = new Subject<void>();
+  const searchSubject = new Subject<void>();
   const sub = useRef(new Subscription());
   useEffect(() => {
     return () => {
@@ -25,7 +25,7 @@ function Users () {
     };
   }, [sub]);
   
-  sub.current = searchClick$.pipe(
+  sub.current = searchSubject.pipe(
     switchMap(() => restApi.getUsers$().pipe(
       tap(({ data }) => {
         dispatch(userAction.setUser(data));
@@ -37,14 +37,18 @@ function Users () {
     ))
   ).subscribe();
 
+  const searchUsers = () => {
+    searchSubject.next();
+  };
+
   return (
     <PageContainer>
       <PageHeader>
         <h1>User List</h1>
       </PageHeader>
       <SectionBody>
-        <Button type="button" onClick={() => searchClick$.next()}> 조회 </Button>
-        <UserList users={users}></UserList>
+        <Button type="button" onClick={searchUsers}> 조회 </Button>
+        <UserList users={users} searchUsers={searchUsers}></UserList>
       </SectionBody>
     </PageContainer>
   );

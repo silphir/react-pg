@@ -3,10 +3,8 @@ import { User } from "../store/users.state";
 import styled from "styled-components";
 import { ButtonSm } from "../components/common-styled";
 import { Subject, EMPTY, Subscription } from "rxjs";
-import { switchMap, catchError, tap } from "rxjs/operators";
+import { switchMap, catchError } from "rxjs/operators";
 import { restApi } from "../api/api";
-import { useDispatch } from "react-redux";
-import { userAction } from "../store/users.action";
 
 const Ul = styled.ul`
   list-style: none;
@@ -54,10 +52,10 @@ const Ul = styled.ul`
 `;
 
 function UserList (
-  { users }: { users: User[] }
+  { users, searchUsers }: 
+  { users: User[]; searchUsers: Function }
 ) {
-  const dispatch = useDispatch();
-  const deleteClick$ = new Subject<string>();
+  const deleteSubject = new Subject<string>();
   const sub = useRef(new Subscription());
   useEffect(() => {
     return () => {
@@ -65,23 +63,14 @@ function UserList (
     };
   }, [sub]);
 
-  sub.current = deleteClick$.pipe(
+  sub.current = deleteSubject.pipe(
     switchMap((id) => restApi.deleteUser$(id).pipe(
-      switchMap(() => restApi.getUsers$().pipe(
-        tap(({ data }) => {
-          dispatch(userAction.setUser(data));
-        }),
-        catchError(({ response })=> {
-          console.log(response.message);
-          return EMPTY;
-        })
-      )),
       catchError(({ response })=> {
         console.log(response.message);
         return EMPTY;
       })
     ))
-  ).subscribe();
+  ).subscribe(() => searchUsers());
 
   return (
     <Ul>
@@ -91,7 +80,7 @@ function UserList (
             <span>NickName: {user.nickName}</span>
             <span>Name: {user.name}</span>
           </div>
-          <ButtonSm type="button" onClick={() => deleteClick$.next(user.id)}>삭제</ButtonSm>
+          <ButtonSm type="button" onClick={() => deleteSubject.next(user.id)}>삭제</ButtonSm>
         </li>
       )) }
     </Ul>

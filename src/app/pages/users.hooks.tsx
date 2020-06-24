@@ -5,8 +5,10 @@ import { restApi } from "../api/api";
 import { useDispatch } from "react-redux";
 import { userAction } from "../store/users.action";
 
-export function useGetUsers(): Subject<void> {
+export function useUsersApi() {
   const searchSubject = new Subject<void>();
+  const deleteSubject = new Subject<string>();
+  
   const dispatch = useDispatch();
   const sub = useRef(new Subscription());
   useEffect(() => {
@@ -27,5 +29,15 @@ export function useGetUsers(): Subject<void> {
     ))
   ).subscribe();
   
-  return searchSubject;
+  sub.current = deleteSubject.pipe(
+    switchMap((id) => restApi.deleteUser$(id).pipe(
+      catchError(({ response })=> {
+        console.log(response.message);
+        return EMPTY;
+      })
+    )),
+    tap(() => searchSubject.next())
+  ).subscribe();
+  
+  return { searchSubject, deleteSubject };
 }

@@ -6,13 +6,13 @@ import {
   SectionBody
 } from "../components/common-styled";
 import UserList from "./userlist";
-import { useGetUsers } from "./users.hooks";
+import { useUsersApi } from "./users.hooks";
 import { useSelector } from "react-redux";
 import { selectUser } from "../store/users.state";
 
 function Users () {
   const users = useSelector(selectUser);
-  const searchSubject = useGetUsers();
+  const { searchSubject } = useUsersApi();
 
   const searchUsers = () => {
     searchSubject.next();
@@ -25,7 +25,7 @@ function Users () {
       </PageHeader>
       <SectionBody>
         <Button type="button" onClick={searchUsers}> 조회 </Button>
-        <UserList users={users} searchUsers={searchUsers}></UserList>
+        <UserList users={users}></UserList>
       </SectionBody>
     </PageContainer>
   );

@@ -1,10 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { User } from "../store/users.state";
 import styled from "styled-components";
 import { ButtonSm } from "../components/common-styled";
-import { Subject, EMPTY, Subscription } from "rxjs";
-import { switchMap, catchError } from "rxjs/operators";
-import { restApi } from "../api/api";
+import { useUsersApi } from "./users.hooks";
 
 const Ul = styled.ul`
   list-style: none;
@@ -52,26 +50,15 @@ const Ul = styled.ul`
 `;
 
 function UserList (
-  { users, searchUsers }: 
-  { users: User[]; searchUsers: Function }
+  { users }: 
+  { users: User[] }
 ) {
-  const deleteSubject = new Subject<string>();
-  const sub = useRef(new Subscription());
-  useEffect(() => {
-    return () => {
-      sub.current.unsubscribe();
-    };
-  }, [sub]);
-
-  sub.current = deleteSubject.pipe(
-    switchMap((id) => restApi.deleteUser$(id).pipe(
-      catchError(({ response })=> {
-        console.log(response.message);
-        return EMPTY;
-      })
-    ))
-  ).subscribe(() => searchUsers());
-
+  const { deleteSubject } = useUsersApi();
+  
+  const deleteUsers = (id: string) => {
+    deleteSubject.next(id);
+  };
+  
   return (
     <Ul>
       { users.map((user: User, index) => (
@@ -80,7 +67,7 @@ function UserList (
             <span>NickName: {user.nickName}</span>
             <span>Name: {user.name}</span>
           </div>
-          <ButtonSm type="button" onClick={() => deleteSubject.next(user.id)}>삭제</ButtonSm>
+          <ButtonSm type="button" onClick={() => deleteUsers(user.id)}>삭제</ButtonSm>
         </li>
       )) }
     </Ul>

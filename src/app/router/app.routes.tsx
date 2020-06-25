@@ -2,10 +2,10 @@ import React, { Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Home = React.lazy(() => import('../pages/home'));
-const Sample = React.lazy(() => import('../pages/sample'));
-const Users = React.lazy(() => import('../pages/users'));
-const Signup = React.lazy(() => import('../pages/signup'));
+const Home = React.lazy(() => import('../pages/home.page'));
+const Sample = React.lazy(() => import('../pages/sample.page'));
+const Users = React.lazy(() => import('../pages/users/users.page'));
+const Signup = React.lazy(() => import('../pages/signup.page'));
 
 const Div = styled.div`
   margin 20px 0;

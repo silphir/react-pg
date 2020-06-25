@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
 import { Subscription, Subject, EMPTY } from "rxjs";
 import { switchMap, tap, catchError } from "rxjs/operators";
-import { restApi } from "../api/api";
+import { restApi } from "../../api/api";
 import { useDispatch } from "react-redux";
-import { userAction } from "../store/users.action";
+import { userAction } from "../../store/users.action";
 
 export function useUsersApi() {
   const searchSubject = new Subject<void>();

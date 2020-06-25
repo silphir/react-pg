@@ -4,13 +4,13 @@ import {
   PageContainer,
   PageHeader,
   SectionBody
-} from "../components/common-styled";
+} from "../../components/common-styled";
 import UserList from "./userlist";
 import { useUsersApi } from "./users.hooks";
 import { useSelector } from "react-redux";
-import { selectUser } from "../store/users.state";
+import { selectUser } from "../../store/users.state";
 
-function Users () {
+export function Users () {
   const users = useSelector(selectUser);
   const { searchSubject } = useUsersApi();
 

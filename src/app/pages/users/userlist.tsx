@@ -1,7 +1,7 @@
 import React from "react";
-import { User } from "../store/users.state";
+import { User } from "../../store/users.state";
 import styled from "styled-components";
-import { ButtonSm } from "../components/common-styled";
+import { ButtonSm } from "../../components/common-styled";
 import { useUsersApi } from "./users.hooks";
 
 const Ul = styled.ul`
